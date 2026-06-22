@@ -1,0 +1,18 @@
+.View-Profile-Layout{
+    display: flex;
+    flex-direction: column;
+    border: 1px solid black;
+    align-items: center;
+    gap: 0.2rem;
+    margin-top: 1rem;
+    /* background-color: black; */
+}
+
+
+
+.More-Matching-Profiles{
+    border: 1px solid black;
+    width: 75.59vw;
+    padding: 0.5rem;
+
+}

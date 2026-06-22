@@ -1,0 +1,38 @@
+  *{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    /* overflow: hidden; */
+  }
+
+  body{
+    font-family : 'Segoe UI' , Tahoma , Geneva ,Verdana  , 'sans-serif';
+    /* font-family: 'Poppins', sans-serif; */
+  }
+/* globals.css */
+
+/* Regular */
+/* @font-face {
+  font-family: 'Poppins';
+  src: url('/fonts/Poppins-Regular.ttf') format('truetype');
+  font-weight: 400;
+  font-style: normal;
+} */
+
+/* Bold */
+/* @font-face {
+  font-family: 'Poppins';
+  src: url('/fonts/Poppins-Bold.ttf') format('truetype');
+  font-weight: 700;
+  font-style: normal;
+} */
+
+/* Italic */
+/* @font-face {
+  font-family: 'Poppins';
+  src: url('/fonts/Poppins-Italic.ttf') format('truetype');
+  font-weight: 400;
+  font-style: italic;
+} */
+
+

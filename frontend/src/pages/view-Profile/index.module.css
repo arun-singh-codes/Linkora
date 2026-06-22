@@ -1,0 +1,145 @@
+.profileDetailsContainer {
+  border: 1px solid black;
+  width: 75.59vw;
+  padding: 0.5rem;
+  display: flex;
+  padding: 0.5rem;
+}
+
+.profilePhotoContainer {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  /* border: 1px solid black; */
+  padding: 0.5rem;
+  width: 20rem;
+  height: 20rem;
+}
+.profileDetails {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+}
+.profileDetails h6 {
+  font-size: 3rem;
+  font-weight: 400;
+}
+
+.profileDetails h6 {
+  font-size: 2.5cd rem;
+  font-weight: 400;
+}
+.profilePhoto {
+  width: 90%;
+  height: 90%;
+  border-radius: 50%;
+  /* border: 1px solid black; */
+  overflow: hidden;
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
+}
+
+.userInfo {
+  /* border: 1px solid black; */
+  padding: 0.5rem;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+  gap: 0.7rem;
+  width: 100%;
+}
+
+.userPosts {
+  /* border: 1px solid black; */
+}
+
+.postsContainer {
+  display: flex;
+  height: auto;
+  width: 40rem;
+  flex-direction: row;
+  /* border: 1px solid red; */
+  flex-wrap:wrap;
+}
+
+/* eachPosts */
+
+.postCard {
+    justify-content: flex-start;
+  width: fit-content;
+  height: fit-content;
+  max-width: 500px;
+  background: #fff;
+  border: 2px solid #e6e6e6;
+  border-radius: 12px;
+  padding: 10px;
+  margin: 12px auto;
+  cursor: pointer;
+  box-shadow: 0 5px 6px rgba(0, 0, 0, 0.05);
+}
+
+/* Header */
+.postHeader {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 10px;
+}
+
+.avatar {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background: #ccc;
+}
+
+.userInfo h4 {
+  margin: 0;
+  font-size: 14px;
+}
+
+.userInfo span {
+  font-size: 12px;
+  color: gray;
+}
+
+/* Body */
+.postBody {
+  font-size: 14px;
+  margin: 10px 0;
+  line-height: 1.4;
+}
+
+/* Media */
+.postMedia {
+  width: 7rem;
+  height: 7rem;
+  border-radius: 10px;
+  margin-top: 10px;
+  object-fit: cover;
+}
+
+/* Footer */
+.postFooter {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 12px;
+  gap: 0.4rem;
+}
+
+.postFooter button {
+  border: none;
+  background: #f5f5f5;
+  padding: 6px 10px;
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 13px;
+}
+
+.postFooter button:hover {
+  background: #eaeaea;
+}

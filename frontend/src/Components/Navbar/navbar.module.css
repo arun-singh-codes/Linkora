@@ -1,0 +1,286 @@
+.navbarContainer {
+  background-color: white;
+  height: 3.4rem;
+  width: 100vw;
+  padding: 0.2rem;
+  display: flex;
+  justify-content: center;
+  position: fixed;
+  top: 0rem;
+}
+
+.navbar {
+  width: 76%;
+  background-color: silver;
+  height: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.logo {
+  /* border: 1px solid black; */
+  width: auto;
+  padding: 0.2rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-left: 0.7rem;
+}
+.logo img {
+  width: 2.2rem;
+  height: 2.2rem;
+}
+.searchBarContainer {
+  display: flex;
+  align-items: center;
+  width: auto;
+  /* margin-right: 1rem;    */
+}
+
+.searchBar {
+  width: 18rem;
+  display: flex;
+  align-items: center;
+  background-color: white;
+  border-radius: 1rem;
+  height: 1.8rem;
+  padding-inline: 0.7rem;
+  position: relative;
+  border: none;
+}
+
+/* .searchBar input:focus{
+    outline: none;
+    border: none;
+   
+} */
+
+.navOptionsContainer {
+  /* border: 1px solid black; */
+  width: 28rem;
+  display: flex;
+  gap: 0.5rem;
+  align-items: center;
+  justify-content: space-around;
+}
+.navOption {
+  /* border: 1px solid black; */
+  cursor: pointer;
+  max-width: 5rem;
+  height: 2.4rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+}
+
+.navOption img {
+  width: 1.5rem;
+  height: 1.5rem;
+  /* object-fit: cover; */
+}
+.navOption p {
+  font-size: 0.7rem;
+}
+
+.profile {
+  /* border: 1px solid black ; */
+  max-width: 10rem;
+  height: 2.4rem;
+  justify-content: center;
+  align-items: center;
+  display: flex;
+  gap: 0.2rem;
+}
+
+.profileIcon {
+  border: 3px solid black;
+  border-radius: 50%;
+  width: 2.4rem;
+  height: 2.4rem;
+  /* margin-bottom: -0.3rem; */
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+}
+
+.profileIcon img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: flex;
+
+  align-items: center;
+}
+
+.HamburgerMenuContainer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 0.5rem;
+}
+
+.username {
+  margin-right: 0.7rem;
+}
+
+/* Media Queries */
+
+/* ===== TABLET (max-width: 1024px) ===== */
+
+@media (max-width: 1024px) {
+  .navbar {
+    width: 95%;
+  }
+
+  .searchBar {
+    width: 14rem;
+    /* width: auto; */
+  }
+  .HamburgerMenuContainer{
+    display: none;
+  }
+
+  .navOptionsContainer {
+    width: 22rem;
+        gap: 0.3rem;
+    /* display: none; */
+  }
+}
+
+@media(max-width:1600px){
+   .HamburgerMenuContainer{
+    display: none;
+  }
+}
+
+/* ===== MOBILE (max-width: 768px) ===== */
+
+@media (max-width: 768px) {
+  .navbar {
+    width: 100%;
+    padding-inline: 0.5rem;
+    gap: 0.4rem;
+  }
+
+  .logo {
+    margin-left: 0;
+  }
+  .HamburgerMenuContainer{
+    display: flex;
+  }
+  .logo img {
+    width: 1.8rem;
+    height: 1.8rem;
+  }
+
+  .searchBarContainer {
+    flex: 1; /* available space le lo */
+    max-width: 14rem;
+  }
+
+  .searchBar {
+    width: 100%; /* container ke andar fit ho */
+    min-width: 0;
+  }
+
+
+
+  .inputContainer input {
+        border: 1px solid red;
+    
+  }
+
+  .navOptionsContainer {
+    display: none;
+  }
+
+  .navOption p {
+    display: none;
+  }
+
+  .navOption {
+    max-width: 2.5rem;
+    width: 2.5rem;
+  }
+
+  /* Hello name hide */
+  /* .profile > div:last-child {
+        display: none;
+    } */
+
+  .profile {
+    max-width: unset; /* ← profile photo hide hone se bachao */
+    flex-shrink: 0;
+  }
+
+  .profileIcon {
+    width: 2.2rem;
+    height: 2.2rem;
+  }
+}
+
+/* ===== SMALL MOBILE (max-width: 480px) ===== */
+
+@media (max-width: 480px) {
+  .navbarContainer {
+    height: 3rem;
+  }
+  .logo{
+    display: none;
+  }
+  .searchBarContainer {
+    max-width: 14rem;
+  }
+
+  .searchBar {
+    height: 1.6rem;
+    padding-inline: 0.4rem;
+  }
+  .searchBar input {
+    border-radius: 1rem;
+  }
+
+  .navOption:nth-child(3) {
+    display: none;
+  }
+
+  .navOption {
+    max-width: 2rem;
+    width: 2rem;
+  }
+
+  .profileIcon {
+    width: 2rem;
+    height: 2rem;
+    border-width: 2px;
+  }
+}
+
+
+.tooltip {
+  position: absolute;
+  bottom: -40px;
+  left: 50%;
+  transform: translateX(-50%);
+
+  background: #222;
+  color: white;
+  padding: 6px 10px;
+  border-radius: 6px;
+
+  font-size: 12px;
+  white-space: nowrap;
+
+  opacity: 0;
+  visibility: hidden;
+
+  transition: all 0.2s ease;
+  z-index: 1000;
+}
+
+.navOption:hover .tooltip {
+  opacity: 1;
+  visibility: visible;
+}

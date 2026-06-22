@@ -1,0 +1,145 @@
+.container {
+  width: 100%;
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 20px;
+}
+
+.heading {
+  margin-bottom: 24px;
+  font-size: 2rem;
+  font-weight: 600;
+  color: #222;
+}
+
+.notificationsContainer {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.notificationCard {
+  display: flex;
+  align-items: center;
+  gap: 18px;
+  padding: 18px;
+  border-radius: 12px;
+  background: #fff;
+  border: 1px solid #e5e7eb;
+  transition: all 0.2s ease;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
+}
+
+.notificationCard:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.12);
+}
+
+.profileImage {
+  width: 72px;
+  height: 72px;
+  border-radius: 50%;
+  object-fit: cover;
+  flex-shrink: 0;
+  border: 2px solid #f1f5f9;
+}
+
+.userInfo {
+  flex: 1;
+  min-width: 0;
+}
+
+.userInfo h3 {
+  margin: 0;
+  font-size: 1.1rem;
+  color: #111827;
+}
+
+.userInfo p {
+  margin: 4px 0;
+  color: #6b7280;
+  font-size: 0.95rem;
+}
+
+.userInfo span {
+  color: #374151;
+  font-size: 0.9rem;
+}
+
+.actions {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
+/* Tablet */
+@media (max-width: 768px) {
+  .container {
+    padding: 16px;
+  }
+
+  .heading {
+    font-size: 1.7rem;
+  }
+
+  .profileImage {
+    width: 64px;
+    height: 64px;
+  }
+
+  .notificationCard {
+    padding: 16px;
+  }
+}
+
+/* Mobile */
+@media (max-width: 576px) {
+  .heading {
+    text-align: center;
+    font-size: 1.5rem;
+  }
+
+  .notificationCard {
+    flex-direction: column;
+    text-align: center;
+    align-items: center;
+  }
+
+  .userInfo {
+    width: 100%;
+  }
+
+  .actions {
+    width: 100%;
+    justify-content: center;
+  }
+
+  .actions button {
+    flex: 1;
+    min-width: 120px;
+  }
+
+  .profileImage {
+    width: 80px;
+    height: 80px;
+  }
+}
+
+/* Small phones */
+@media (max-width: 400px) {
+  .container {
+    padding: 10px;
+  }
+
+  .notificationCard {
+    padding: 14px;
+  }
+
+  .actions {
+    flex-direction: column;
+  }
+
+  .actions button {
+    width: 100%;
+  }
+}

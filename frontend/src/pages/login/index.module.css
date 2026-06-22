@@ -1,0 +1,130 @@
+.container{
+    
+    border: 2px solid black;
+    width: 60rem;
+    height: 30rem;
+    position: fixed;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    display: flex;
+
+}
+
+.rightContainer img{
+    height: 29rem;
+    width: 30rem;
+}
+
+.rightContainer{
+    padding: 0.1rem;
+    flex: 1;
+}
+.leftContainer{
+    flex: 1;
+    padding: 0.1rem;
+    align-items: center;
+    display: flex;
+    justify-content: center;
+}
+
+
+
+/* //login & Signup */
+
+
+.formContainer{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+
+.formItems{
+    display: flex;
+    flex-direction: column;
+    padding: 1rem;
+    gap: 0.7rem;
+}
+
+
+
+/* media queries */
+
+
+/* ===== TABLET (max-width: 1024px) ===== */
+
+@media (max-width: 1024px) {
+    .container {
+        width: 90vw;
+        height: auto;
+        min-height: 30rem;
+    }
+
+    .rightContainer img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+    }
+}
+
+
+/* ===== MOBILE (max-width: 768px) ===== */
+
+@media (max-width: 768px) {
+    .container {
+        position: relative;         
+        left: unset;
+        top: unset;
+        transform: none;
+        width: 100%;
+        height: auto;
+        flex-direction: column;      
+        border: none;
+        margin: 0;
+    }
+
+    .leftContainer {
+        flex: unset;
+        width: 100%;
+        padding: 1.5rem 1rem;
+    }
+
+    .rightContainer {
+        flex: unset;
+        width: 100%;
+        height: 200px;              
+        padding: 0;
+    }
+
+    .rightContainer img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+    }
+
+    .formItems {
+        padding: 0.5rem;
+        gap: 0.5rem;
+    }
+}
+
+
+/* ===== SMALL MOBILE (max-width: 480px) ===== */
+
+@media (max-width: 480px) {
+    .rightContainer {
+        display: none;               
+    }
+
+    .leftContainer {
+        padding: 2rem 1rem;
+        min-height: 100vh;
+    }
+
+    .formItems {
+        width: 100%;
+        padding: 0.5rem 0;
+    }
+}
