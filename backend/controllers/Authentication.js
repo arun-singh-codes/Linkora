@@ -39,7 +39,7 @@ export const signup = async (req, res) => {
 
     res.cookie("token", token, {
       // withCredentials: true,  isse axios side pe likhna hota hai
-      sameSite: "lax",
+      sameSite: "none",
       httpOnly: true,
       secure: process.env.NODE_ENV === "production",
       maxAge: 3 * 24 * 60 * 60 * 1000,
