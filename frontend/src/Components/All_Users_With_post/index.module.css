@@ -24,10 +24,13 @@
 .postHeader:hover{
     background-color: #daa7da;
     
+    
 }
 .connectButton{
     margin-left: auto;
-    padding-top: 0.3rem;
+    display: flex;
+    align-items: center;
+  
 }
 .roundImageDiv{
     border-radius: 100%;

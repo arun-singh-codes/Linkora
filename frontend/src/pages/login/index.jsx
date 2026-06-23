@@ -1,6 +1,5 @@
 
 import { useRouter } from "next/router.js";
-import UserLayout from "../../layout/userLayout/index.jsx"
 import React from "react";
 import{useSelector  , useDispatch} from "react-redux";
 import styles from "./index.module.css";

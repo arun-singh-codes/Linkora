@@ -80,7 +80,7 @@ export default function Notifications({ requests }) {
 
 export async function getServerSideProps(context) {
   const res = await clientServer.get(
-    "http://localhost:9090/connection/getReceivedRequests",
+    "/connection/getReceivedRequests",
     {
       headers: {
         cookie: context.req.headers.cookie || "",

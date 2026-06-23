@@ -53,7 +53,7 @@ export default function MyConnections({ connections }) {
 
 export async function getServerSideProps(context) {
   const res = await clientServer.get(
-    "http://localhost:9090/connection/getAllConnections",
+    "/connection/getAllConnections",
     {
       headers: {
         cookie: context.req.headers.cookie || "",

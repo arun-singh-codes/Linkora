@@ -21,6 +21,7 @@ const allowedOrigins = process.env.CLIENT_URL
 app.use(cors({ origin: allowedOrigins, credentials: true }));
 // routes
 app.use("/Auth", AuthRoute);
+app.use("/uploads", express.static("uploads"));
 app.use("/user", profilePicture);
 app.use("/post", postRoutes);
 app.use("/comment", commentRoutes);

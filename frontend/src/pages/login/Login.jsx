@@ -45,6 +45,7 @@ export default function Login({handleForm}){
           />
           <TextField
             id="outlined-basic"
+            type="password"
             name="password"
             label="Password"
             variant="outlined"

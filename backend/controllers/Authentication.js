@@ -29,7 +29,7 @@ export const signup = async (req, res) => {
     const newUser = await User.create({
       email,
       username,
-      password: hashedPassword,
+      password: hashedPassword, 
       name,
     });
 

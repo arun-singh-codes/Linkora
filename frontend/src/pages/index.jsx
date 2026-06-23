@@ -1,28 +1,4 @@
-// import { useRouter } from "next/router";
-// import styles from "@/styles/Home.module.css";
-// import UserLayout from "../layout/userLayout";
-// export default function Home() {
-//   const router = useRouter();
 
-//   return (
-//       <div className={styles.container}>
-//         <div className={styles.mainContainer}>
-//           <div className={styles.mainContainer_left}>
-//             <h1>Connect With friends Without Exaggeration </h1>
-//             <p>A True Social Media Platform ,With Stories no blufs! </p>
-//           </div>
-//           <div className={styles.mainContainer_right}>
-//             <img src="/images/connection.jpg" alt="" /> 
-//           </div>
-          
-//         </div>
-//          <button className={styles.button}  onClick={()=>{router.push("/login")}}>
-//           Join now
-//         </button>
-//       </div>
-  
-//   );
-// }
 
 
 import { useRouter } from "next/router";
