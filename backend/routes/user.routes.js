@@ -27,7 +27,7 @@ router.route("/getUserProfile").get(authMiddleware, getUserProfile);
 router.route("/updateUserProfile").post(authMiddleware, updateUserProfile);
 
 router.route("/user/download_Resume").get(downloadProfile);
-router.route("/getUserProfileByUsername").get(getUserProfileAndUserByUsername);
+router.route("/getUserProfileByUsername").get( getUserProfileAndUserByUsername);
 router.route("/getAllUsers").get(getAllUsersProfile);
 
 router.route("/getMatchingUsers").get(searchUsers);

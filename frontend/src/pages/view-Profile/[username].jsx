@@ -79,11 +79,15 @@ export async function getServerSideProps(context) {
   const request = await clientServer.get("/user/getUserProfileByUsername", {
     // request from Next.js server → Backend server
     params: { username },
+    headers: {
+      cookie: context.req.headers.cookie || "",
+    },
   });
 
   const postsByUser = await clientServer.get(
     `/post/postsByUser/${request.data.userProfile.userId._id}`,
   );
+
 
   console.log("arun");
   return {

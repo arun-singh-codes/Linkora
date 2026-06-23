@@ -78,51 +78,19 @@ export default function Notifications({ requests }) {
   );
 }
 
-// export async function getServerSideProps(context) {
-//   const res = await clientServer.get(
-//     "/connection/getReceivedRequests",
-//     {
-//       headers: {
-//         cookie: context.req.headers.cookie || "",
-//       },
-//     },
-//   );
-
-//   return {
-//     props: {
-//       requests: res.data,
-//     },
-//   };
-// }
 export async function getServerSideProps(context) {
-  try {
-    console.log("SSR COOKIE:", context.req.headers.cookie);
-
-    const res = await clientServer.get(
-      "/connection/getReceivedRequests",
-      {
-        headers: {
-          cookie: context.req.headers.cookie || "",
-        },
-      }
-    );
-
-    console.log("SUCCESS");
-
-    return {
-      props: {
-        requests: res.data,
+  const res = await clientServer.get(
+    "/connection/getReceivedRequests",
+    {
+      headers: {
+        cookie: context.req.headers.cookie || "",
       },
-    };
-  } catch (err) {
-    console.log("STATUS:", err?.response?.status);
-    console.log("DATA:", err?.response?.data);
-    console.log("MESSAGE:", err?.message);
+    },
+  );
 
-    return {
-      props: {
-        requests: [],
-      },
-    };
-  }
+  return {
+    props: {
+      requests: res.data,
+    },
+  };
 }

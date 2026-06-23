@@ -10,8 +10,8 @@ router.post("/sendConnectionRequest" , authMiddleware , sendConnectionRequest);
 router.post("/accept/:id" ,authMiddleware ,  acceptRequest);
 router.post("/reject/:id" ,authMiddleware ,  rejectRequest);
 router.get("/getReceivedRequests" ,authMiddleware ,  getReceivedRequests);
-router.get("/getSentRequests" ,authMiddleware ,  getSentRequests);
-router.get("/getAllConnections" ,authMiddleware ,  getAllConnections);
+router.get("/getSentRequests"  ,  getSentRequests);
+router.get("/getAllConnections" , getAllConnections);
 
 
 export default router;
