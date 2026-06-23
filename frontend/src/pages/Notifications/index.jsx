@@ -77,20 +77,35 @@ export default function Notifications({ requests }) {
     </UserLayout>
   );
 }
-
 export async function getServerSideProps(context) {
-  const res = await clientServer.get(
-    "/connection/getReceivedRequests",
-    {
-      headers: {
-        cookie: context.req.headers.cookie || "",
-      },
-    },
-  );
+  try {
+    console.log("SSR COOKIE:", context.req.headers.cookie);
 
-  return {
-    props: {
-      requests: res.data,
-    },
-  };
+    const res = await clientServer.get(
+      "/connection/getReceivedRequests",
+      {
+        headers: {
+          cookie: context.req.headers.cookie || "",
+        },
+      }
+    );
+
+    console.log("SUCCESS");
+
+    return {
+      props: {
+        requests: res.data,
+      },
+    };
+  } catch (err) {
+    console.log("STATUS:", err?.response?.status);
+    console.log("DATA:", err?.response?.data);
+    console.log("MESSAGE:", err?.message);
+
+    return {
+      props: {
+        requests: [],
+      },
+    };
+  }
 }
