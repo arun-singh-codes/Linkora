@@ -31,7 +31,7 @@ const userSchema = new mongoose.Schema({
 
   profilePicture:{
     type: String,
-    default:'http://localhost:9090/uploads/nouser.jpg'
+    default:'https://linkora-bvx4.onrender.com/uploads/nouser.jpg'
 
 
   },

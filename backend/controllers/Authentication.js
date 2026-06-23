@@ -51,42 +51,42 @@ export const signup = async (req, res) => {
   }
 };
 
-export const login = async (req, res) => {
-  try {
-    const { username, password } = req.body;
-    console.log(req.body);
-    console.log("username:", username);
-    console.log("password:", password);
+  export const login = async (req, res) => {
+    try {
+      const { username, password } = req.body;
+      console.log(req.body);
+      console.log("username:", username);
+      console.log("password:", password);
 
-    if (!username || !password) {
-      return res.status(400).json({ message: "All fields are required" });
+      if (!username || !password) {
+        return res.status(400).json({ message: "All fields are required" });
+      }
+
+      const user = await User.findOne({ username });
+      if (!user) {
+        return res.json({ message: "Incorrect password or username " });
+      }
+
+      const auth = await bcrypt.compare(password, user.password);
+      if (!auth) {
+        return res.json({ message: "Incorrect password or email" });
+      }
+
+      const token = createSecretToken(user._id);
+
+      res.cookie("token", token, {
+        // withCredentials:true,  isse axios side pe likho
+        sameSite: "none",
+        httpOnly: true,
+        secure: process.env.NODE_ENV === "production",
+        maxAge: 3 * 24 * 60 * 60 * 1000,
+      });
+      res.status(201).json({ message: "User logged in successfully" });
+    } catch (err) {
+      console.log(err);
+      return res.json({ message: err.message });
     }
-
-    const user = await User.findOne({ username });
-    if (!user) {
-      return res.json({ message: "Incorrect password or username " });
-    }
-
-    const auth = await bcrypt.compare(password, user.password);
-    if (!auth) {
-      return res.json({ message: "Incorrect password or email" });
-    }
-
-    const token = createSecretToken(user._id);
-
-    res.cookie("token", token, {
-      // withCredentials:true,  isse axios side pe likho
-      sameSite: "none",
-      httpOnly: true,
-      secure: process.env.NODE_ENV === "production",
-      maxAge: 3 * 24 * 60 * 60 * 1000,
-    });
-    res.status(201).json({ message: "User logged in successfully" });
-  } catch (err) {
-    console.log(err);
-    return res.json({ message: err.message });
-  }
-};
+  };
 
 export const isAuthenticated = async (req, res) => {
   try {

@@ -52,21 +52,29 @@ export default function MyConnections({ connections }) {
 }
 
 export async function getServerSideProps(context) {
-  const res = await clientServer.get(
-    "/connection/getAllConnections",
-    {
-      headers: {
-        cookie: context.req.headers.cookie || "",
+  try {
+    console.log("SSR COOKIE:", context.req.headers.cookie);
+    const res = await clientServer.get(
+      "/connection/getAllConnections",
+      {
+        headers: {
+          cookie: context.req.headers.cookie || "",
+        },
+      }
+    );
+
+    return {
+      props: {
+        connections: res.data,
       },
-    },
-  );
+    };
+  } catch (err) {
+    console.log(err?.response?.data || err.message);
 
-  const connections = await res.data;
-  console.log(connections);
-
-  return {
-    props: {
-      connections,
-    },
-  };
+    return {
+      props: {
+        connections: [],
+      },
+    };
+  }
 }
