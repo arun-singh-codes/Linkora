@@ -77,6 +77,23 @@ export default function Notifications({ requests }) {
     </UserLayout>
   );
 }
+
+// export async function getServerSideProps(context) {
+//   const res = await clientServer.get(
+//     "/connection/getReceivedRequests",
+//     {
+//       headers: {
+//         cookie: context.req.headers.cookie || "",
+//       },
+//     },
+//   );
+
+//   return {
+//     props: {
+//       requests: res.data,
+//     },
+//   };
+// }
 export async function getServerSideProps(context) {
   try {
     console.log("SSR COOKIE:", context.req.headers.cookie);

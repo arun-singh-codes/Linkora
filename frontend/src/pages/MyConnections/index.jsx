@@ -1,12 +1,92 @@
 
 
+// import React from "react";
+// import UserLayout from "../../layout/userLayout";
+// import { clientServer } from "@/config";
+// import styles from "./index.module.css";
+// import { useSelector } from "react-redux";
+
+// export default function MyConnections({ connections }) {
+//   const authState = useSelector((state) => state.auth);
+//   const currentUserId = authState?.user?._id;
+
+//   return (
+//     <UserLayout>
+//       <div className={styles.container}>
+//         <h1 className={styles.heading}>My Connections</h1>
+
+//         <div className={styles.connectionsContainer}>
+//           {connections?.map((connection) => {
+//             const otherUser =
+//               connection.senderId._id === currentUserId
+//                 ? connection.receiverId
+//                 : connection.senderId;
+
+//             return (
+//               <div
+//                 key={connection._id}
+//                 className={styles.connectionCard}
+//               >
+//                 <img
+//                   src={otherUser.profilePicture}
+//                   alt={otherUser.name}
+//                   className={styles.profileImage}
+//                 />
+
+//                 <div className={styles.userInfo}>
+//                   <h3>{otherUser.name}</h3>
+//                   <p>{otherUser.email}</p>
+//                   <span>Connected</span>
+//                 </div>
+
+//                 <button className={styles.messageBtn}>
+//                   Message
+//                 </button>
+//               </div>
+//             );
+//           })}
+//         </div>
+//       </div>
+//     </UserLayout>
+//   );
+// }
+
+// export async function getServerSideProps(context) {
+//   try {
+//     console.log("SSR COOKIE:", context.req.headers.cookie);
+//     const res = await clientServer.get(
+//       "/connection/getAllConnections",
+//       {
+//         headers: {
+//           cookie: context.req.headers.cookie || "",
+//         },
+//       }
+//     );
+
+//     return {
+//       props: {
+//         connections: res.data,
+//       },
+//     };
+//   } catch (err) {
+//     console.log(err?.response?.data || err.message);
+
+//     return {
+//       props: {
+//         connections: [],
+//       },
+//     };
+//   }
+// }
+
+
 import React from "react";
 import UserLayout from "../../layout/userLayout";
 import { clientServer } from "@/config";
 import styles from "./index.module.css";
 import { useSelector } from "react-redux";
 
-export default function MyConnections({ connections }) {
+export default function MyConnections({ connections, error }) {
   const authState = useSelector((state) => state.auth);
   const currentUserId = authState?.user?._id;
 
@@ -14,6 +94,13 @@ export default function MyConnections({ connections }) {
     <UserLayout>
       <div className={styles.container}>
         <h1 className={styles.heading}>My Connections</h1>
+
+        {error && (
+          <p className={styles.errorText}>
+            Something went wrong while loading your connections. Please try
+            again later.
+          </p>
+        )}
 
         <div className={styles.connectionsContainer}>
           {connections?.map((connection) => {
@@ -23,10 +110,7 @@ export default function MyConnections({ connections }) {
                 : connection.senderId;
 
             return (
-              <div
-                key={connection._id}
-                className={styles.connectionCard}
-              >
+              <div key={connection._id} className={styles.connectionCard}>
                 <img
                   src={otherUser.profilePicture}
                   alt={otherUser.name}
@@ -39,12 +123,14 @@ export default function MyConnections({ connections }) {
                   <span>Connected</span>
                 </div>
 
-                <button className={styles.messageBtn}>
-                  Message
-                </button>
+                <button className={styles.messageBtn}>Message</button>
               </div>
             );
           })}
+
+          {!error && connections?.length === 0 && (
+            <p className={styles.emptyText}>You have no connections yet.</p>
+          )}
         </div>
       </div>
     </UserLayout>
@@ -52,28 +138,44 @@ export default function MyConnections({ connections }) {
 }
 
 export async function getServerSideProps(context) {
+  const cookie = context.req.headers.cookie || "";
+
   try {
-    console.log("SSR COOKIE:", context.req.headers.cookie);
-    const res = await clientServer.get(
-      "/connection/getAllConnections",
-      {
-        headers: {
-          cookie: context.req.headers.cookie || "",
+    const res = await clientServer.get("/connection/getAllConnections", {
+      headers: { cookie },
+      timeout: 10000, // backend hang hua toh 300s tak SSR function ko latakne na do
+    });
+
+    return {
+      props: {
+        connections: res.data ?? [],
+      },
+    };
+  } catch (err) {
+    const status = err?.response?.status;
+
+    // Auth failure -> login pe redirect karo, empty data dikha ke confuse mat karo
+    if (status === 401 || status === 403) {
+      return {
+        redirect: {
+          destination: `/login?redirect=${encodeURIComponent(
+            context.resolvedUrl
+          )}`,
+          permanent: false,
         },
-      }
+      };
+    }
+
+    // Koi aur genuine error (backend down, timeout, network issue, etc.)
+    console.error(
+      "MyConnections SSR error:",
+      err?.response?.data || err.message
     );
 
     return {
       props: {
-        connections: res.data,
-      },
-    };
-  } catch (err) {
-    console.log(err?.response?.data || err.message);
-
-    return {
-      props: {
         connections: [],
+        error: true,
       },
     };
   }
