@@ -15,7 +15,6 @@ import {
 import {
   getAllPosts,
   createPost,
-  deletePost,
   commmentOnPost,
   getAllCommentsOnPost,
 } from "../../config/redux/action/postAction/index.js";

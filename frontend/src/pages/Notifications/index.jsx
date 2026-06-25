@@ -1,34 +1,31 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import UserLayout from "../../layout/userLayout";
 import { clientServer } from "@/config";
 import styles from "./index.module.css";
-import { useDispatch } from "react-redux";
+import { useDispatch , useSelector } from "react-redux";
 import Button from "@mui/material/Button";
 import {
   acceptRequest,
   rejectRequest,
+  getReceivedRequests
 } from "../../config/redux/action/connectionAction";
 
-export default function Notifications({ requests }) {
+export default function Notifications() {
   const dispatch = useDispatch();
+  const connnectionState = useSelector((state) => state.connection);
 
-  const [allRequests, setAllRequests] = useState(requests);
+  const allRequests = connnectionState.requestsReceived;
+  useEffect(() => {
+    dispatch(getReceivedRequests());
+  }, []);
 
   const handleAccept = async (requestId) => {
     await dispatch(acceptRequest(requestId));
-
-    setAllRequests((prev) =>
-      prev.filter((request) => request._id !== requestId),
-    );
   };
 
   const handleReject = async (requestId) => {
-  await dispatch(rejectRequest(requestId));
-
-  setAllRequests((prev) =>
-    prev.filter((request) => request._id !== requestId)
-  );
-};
+    await dispatch(rejectRequest(requestId));
+  };
   return (
     <UserLayout>
       <div className={styles.container}>
@@ -54,7 +51,7 @@ export default function Notifications({ requests }) {
                   <Button
                     variant="contained"
                     size="small"
-                    onClick={() =>handleAccept(request._id) }
+                    onClick={() => handleAccept(request._id)}
                   >
                     Accept
                   </Button>
@@ -76,21 +73,4 @@ export default function Notifications({ requests }) {
       </div>
     </UserLayout>
   );
-}
-
-export async function getServerSideProps(context) {
-  const res = await clientServer.get(
-    "/connection/getReceivedRequests",
-    {
-      headers: {
-        cookie: context.req.headers.cookie || "",
-      },
-    },
-  );
-
-  return {
-    props: {
-      requests: res.data,
-    },
-  };
 }

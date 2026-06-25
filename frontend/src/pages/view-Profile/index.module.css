@@ -27,7 +27,7 @@
 }
 
 .profileDetails h6 {
-  font-size: 2.5cd rem;
+  font-size: 2.5 rem;
   font-weight: 400;
 }
 .profilePhoto {
@@ -53,9 +53,6 @@
   width: 100%;
 }
 
-.userPosts {
-  /* border: 1px solid black; */
-}
 
 .postsContainer {
   display: flex;
@@ -142,4 +139,147 @@
 
 .postFooter button:hover {
   background: #eaeaea;
+}
+
+
+/* Media Queries */
+
+
+
+/* ========================= */
+/* Large Tablets */
+/* ========================= */
+
+@media screen and (max-width: 1024px) {
+  .profileDetailsContainer {
+    width: 95vw;
+  }
+
+  .postsContainer {
+    width: 100%;
+  }
+
+  .profileDetails h6 {
+    font-size: 2rem;
+  }
+}
+
+/* ========================= */
+/* Tablets */
+/* ========================= */
+
+@media screen and (max-width: 768px) {
+  .profileDetailsContainer {
+    width: 95vw;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .profilePhotoContainer {
+    width: 15rem;
+    height: 15rem;
+  }
+
+  .profileDetails {
+    width: 100%;
+  }
+
+  .userInfo {
+    align-items: center;
+    text-align: center;
+  }
+
+  .profileDetails h6 {
+    font-size: 1.8rem;
+  }
+
+  .postsContainer {
+    width: 100%;
+    justify-content: center;
+  }
+
+  .postCard {
+    width: 90%;
+    max-width: 500px;
+  }
+}
+
+/* ========================= */
+/* Mobile Phones */
+/* ========================= */
+
+@media screen and (max-width: 576px) {
+  .profileDetailsContainer {
+    width: 100%;
+    border: none;
+    padding: 0.5rem;
+  }
+
+  .profilePhotoContainer {
+    width: 12rem;
+    height: 12rem;
+  }
+
+  .profileDetails h6 {
+    font-size: 1.5rem;
+  }
+
+  .userInfo p {
+    font-size: 0.9rem;
+  }
+
+  .postsContainer {
+    width: 100%;
+  }
+
+  .postCard {
+    width: 100%;
+    margin: 0.5rem 0;
+  }
+
+  .postMedia {
+    width: 100%;
+    height: auto;
+    max-height: 250px;
+  }
+
+  .postFooter {
+    flex-wrap: wrap;
+  }
+
+  .postFooter button {
+    flex: 1;
+    min-width: 100px;
+  }
+}
+
+/* ========================= */
+/* Small Phones */
+/* ========================= */
+
+@media screen and (max-width: 400px) {
+  .profilePhotoContainer {
+    width: 9rem;
+    height: 9rem;
+  }
+
+  .profileDetails h6 {
+    font-size: 1.25rem;
+  }
+
+  .userInfo p {
+    font-size: 0.8rem;
+  }
+
+  .postCard {
+    padding: 8px;
+  }
+
+  .postBody {
+    font-size: 13px;
+  }
+
+  .postFooter button {
+    width: 100%;
+  }
 }

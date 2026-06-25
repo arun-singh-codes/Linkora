@@ -9,9 +9,9 @@ const router = express.Router();
 router.post("/sendConnectionRequest" , authMiddleware , sendConnectionRequest);
 router.post("/accept/:id" ,authMiddleware ,  acceptRequest);
 router.post("/reject/:id" ,authMiddleware ,  rejectRequest);
-router.get("/getReceivedRequests"  ,  getReceivedRequests);
-router.get("/getSentRequests"  ,  getSentRequests);
-router.get("/getAllConnections" , getAllConnections);
+router.get("/getReceivedRequests"  ,  authMiddleware ,getReceivedRequests);
+router.get("/getSentRequests"  , authMiddleware , getSentRequests);
+router.get("/getAllConnections" , authMiddleware  ,getAllConnections);
 
 
 export default router;

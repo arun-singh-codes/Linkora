@@ -1,14 +1,19 @@
-
-
-import React from "react";
+import React, { useEffect } from "react";
 import UserLayout from "../../layout/userLayout";
-import { clientServer } from "@/config";
 import styles from "./index.module.css";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
+import { getAllConnections } from "@/config/redux/action/connectionAction";
 
-export default function MyConnections({ connections }) {
+
+export default function MyConnections() {
   const authState = useSelector((state) => state.auth);
+  const connnectionState = useSelector((state) => state.connection);
   const currentUserId = authState?.user?._id;
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    dispatch(getAllConnections());
+  }, []);
 
   return (
     <UserLayout>
@@ -16,17 +21,14 @@ export default function MyConnections({ connections }) {
         <h1 className={styles.heading}>My Connections</h1>
 
         <div className={styles.connectionsContainer}>
-          {connections?.map((connection) => {
+          {connnectionState.connections?.map((connection) => {
             const otherUser =
               connection.senderId._id === currentUserId
                 ? connection.receiverId
                 : connection.senderId;
 
             return (
-              <div
-                key={connection._id}
-                className={styles.connectionCard}
-              >
+              <div key={connection._id} className={styles.connectionCard}>
                 <img
                   src={otherUser.profilePicture}
                   alt={otherUser.name}
@@ -39,9 +41,7 @@ export default function MyConnections({ connections }) {
                   <span>Connected</span>
                 </div>
 
-                <button className={styles.messageBtn}>
-                  Message
-                </button>
+                <button className={styles.messageBtn}>Message</button>
               </div>
             );
           })}
@@ -49,28 +49,4 @@ export default function MyConnections({ connections }) {
       </div>
     </UserLayout>
   );
-}
-
-export async function getServerSideProps(context) {
-  try {
-    console.log("SSR COOKIE:", context.req.headers.cookie);
-    const res = await clientServer.get(
-      "/connection/getAllConnections",
-      {
-        headers: {
-          cookie: context.req.headers.cookie || "",
-        },
-      }
-    );
-
-    return {
-      props: {
-        connections: res.data,
-      },
-    };
-  } catch (err) {
-    console.log(err?.response?.data || err.message);
-
-    
-  }
 }

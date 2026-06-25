@@ -2,6 +2,9 @@ import { React, useState } from "react";
 import Navbar from "../../Components/Navbar/Navbar.jsx";
 import Style from "./index.module.css";
 import { useSelector } from "react-redux";
+import { useRouter } from "next/router";
+
+
 
 export default function UserLayout({ children }) {
   const authState = useSelector((state) => state.auth);
@@ -12,6 +15,7 @@ export default function UserLayout({ children }) {
     left: 0,
     width: 0,
   });
+  const router = useRouter();
 
   return (
     <>
@@ -22,7 +26,6 @@ export default function UserLayout({ children }) {
             setSearchModal={setSearchModal}
             setSearchModalPosition={setSearchModalPosition}
           />
-          
         </div>
 
         {children}
@@ -40,11 +43,16 @@ export default function UserLayout({ children }) {
               borderRadius: "0.3rem",
               marginTop: "0.15rem",
               padding: "0.2rem",
-              overflow:"none"
+              overflow: "none",
             }}
           >
             {authState.searchedUsers.map((user) => (
-              <div className={Style.searchUserCard}>
+              <div
+                className={Style.searchUserCard}
+                onClick={() => {
+                  router.push(`/view-Profile/${user.username}`);
+                }}
+              >
                 <div className={Style.imageWrapper}>
                   <img
                     src={user.profilePicture}
@@ -62,7 +70,6 @@ export default function UserLayout({ children }) {
                 </div>
               </div>
             ))}
-            
           </div>
         )}
       </div>
