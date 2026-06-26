@@ -92,7 +92,7 @@ const getReceivedRequests = async (req, res) => {
 
     res.status(200).json(requests);
   } catch (err) {
-    res.status(500).json({ message: "Failed to fetch requests" });
+    res.status(500).json({  message: err.message,error: err});
   }
 };
 
@@ -106,7 +106,7 @@ const getSentRequests = async (req, res) => {
     });
     res.status(200).json(requests);
   } catch (err) {
-    res.status(500).json({ message: "Failed to fetch sent requests" });
+    res.status(500).json({  message: err.message,error: err });
   }
 };
 
@@ -129,7 +129,7 @@ const getAllConnections = async (req, res) => {
   } catch (err) {
     console.log(err);
     return res.status(500).json({
-      message: "Failed to fetch connections"
+      message: err.message,error: err
     });
   }
 };
